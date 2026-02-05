@@ -19,13 +19,23 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h2 className="text-xl md:text-2xl font-mono text-accent mb-6 uppercase tracking-widest">
+              <motion.h2 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="text-xl md:text-2xl font-mono text-accent mb-6 uppercase tracking-widest"
+              >
                 — Full Stack Developer
-              </h2>
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tighter mb-12">
+              </motion.h2>
+              <motion.h1 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                className="text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tighter mb-12"
+              >
                 AZDIN<br />
                 AITCHATTO
-              </h1>
+              </motion.h1>
             </motion.div>
 
             <motion.div

@@ -53,7 +53,7 @@
   --muted: 0 0% 93%;
   --muted-foreground: 0 0% 40%;
   
-  --accent: 250 80% 55%; /* Electric Purple Accent */
+  --accent: 45 100% 50%; /* Vibrant Yellow Accent */
   --accent-foreground: 0 0% 98%;
   
   --destructive: 0 84.2% 60.2%;
@@ -85,7 +85,7 @@
   --muted: 0 0% 12%;
   --muted-foreground: 0 0% 60%;
   
-  --accent: 250 80% 60%;
+  --accent: 45 100% 60%;
   --accent-foreground: 0 0% 98%;
   
   --destructive: 0 62.8% 30.6%;
