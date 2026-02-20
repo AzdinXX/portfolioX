@@ -1,18 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1"
-    />
-    <meta http-equiv="refresh" content="0; url=./dist/public/" />
-    <title>Azdin Aitchatto - Portfolio</title>
-  </head>
-  <body>
-    <p>Redirecting to the built portfolio...</p>
-    <script>
-      window.location.replace("./dist/public/");
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta property="og:title" content="Azdin Aitchatto - Portfolio">
+  <meta property="og:description" content="Full-Stack Web Developer | React, Node.js, Next.js">
+  <meta property="og:type" content="website">
+  <title>Azdin Aitchatto - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0d0d0d;
+      --fg: #fafafa;
+      --muted: #a3a3a3;
+      --accent: #ffd700;
+      --border: rgba(255,255,255,0.1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    .font-display { font-family: 'Syne', sans-serif; }
+    .font-mono { font-family: 'Space Grotesk', monospace; }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(13,13,13,0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav .brand { font-size: 1.5rem; font-weight: 700; }
+    nav .brand:hover { color: var(--accent); }
+    nav .links { display: flex; gap: 2rem; }
+    nav .links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    nav .links a:hover { color: var(--accent); }
+    @media (max-width: 768px) {
+      nav .links { display: none; }
+    }
+
+    /* Sections */
+    section { padding: 6rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    section h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .accent { color: var(--accent); }
+    .muted { color: var(--muted); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero .tag { font-size: 1.25rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    .hero .intro { font-size: 1.125rem; color: var(--muted); max-width: 36rem; margin-bottom: 2rem; }
+    .hero .cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .hero .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--fg);
+      color: var(--bg);
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    .hero .btn:hover { background: var(--accent); }
+    .hero .social { display: flex; gap: 1rem; }
+    .hero .social a {
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      color: var(--fg);
+    }
+    .hero .social a:hover { border-color: var(--accent); color: var(--accent); }
+    .hero .meta { border-left: 1px solid var(--border); padding-left: 2rem; margin-top: 2rem; }
+    .hero .meta h3 { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; margin-bottom: 0.25rem; }
+    .hero .meta p { font-size: 1.25rem; margin-bottom: 1rem; }
+    .hero .status { display: flex; align-items: center; gap: 0.5rem; }
+    .hero .status .dot { width: 12px; height: 12px; background: #22c55e; border-radius: 50%; }
+    @media (min-width: 1024px) {
+      .hero .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: end; }
+    }
+
+    /* Experience */
+    #experience { border-bottom: 1px solid var(--border); }
+    .exp-tag { display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .exp h3 { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; }
+    .exp-card {
+      padding: 2rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 1.5rem;
+    }
+    .exp-card:hover { border-color: rgba(255,215,0,0.2); }
+    .exp-card h4 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .exp-card .company { color: var(--accent); font-size: 1.125rem; margin-bottom: 0.5rem; }
+    .exp-card .period { font-size: 0.875rem; color: var(--muted); background: rgba(255,255,255,0.05); padding: 0.25rem 1rem; display: inline-block; margin-bottom: 1rem; }
+    .exp-card p { color: var(--muted); margin-bottom: 1rem; }
+    .exp-card .tech { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .exp-card .tech span { padding: 0.25rem 0.75rem; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
+    @media (min-width: 1024px) {
+      .exp .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
+    }
+
+    /* Skills */
+    #skills { border-bottom: 1px solid var(--border); }
+    .skills-tag { display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); color: var(--accent); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1rem; }
+    .skills-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+    .skill-item { display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0; }
+    .skill-item .num { font-size: 0.75rem; color: rgba(255,215,0,0.5); }
+    .skill-item .line { width: 2rem; height: 1px; background: rgba(255,255,255,0.1); }
+    .skill-item h3 { font-size: 1.5rem; font-weight: 700; }
+    .skill-item:hover .num, .skill-item:hover h3 { color: var(--accent); }
+
+    /* Projects */
+    #projects { border-bottom: 1px solid var(--border); }
+    .proj-tag { display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); color: var(--accent); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1rem; }
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .proj-card {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: 1.5rem;
+    }
+    .proj-card:hover { border-color: rgba(255,215,0,0.4); }
+    .proj-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
+    .proj-card .cat { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; }
+    .proj-card .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .proj-card .tags span { font-size: 0.625rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border); color: var(--muted); }
+
+    /* Contact */
+    #contact { padding: 6rem 1.5rem; }
+    #contact h2 { font-size: 1.25rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 2rem; }
+    #contact .big-link { display: block; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; color: var(--fg); text-decoration: none; line-height: 1.1; }
+    #contact .big-link:hover { color: var(--muted); }
+    #contact .big-link span { color: var(--accent); }
+    #contact .big-link:hover span { opacity: 0.9; }
+    #contact .details { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+    #contact .details h4 { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; }
+    #contact .details a { color: var(--fg); text-decoration: none; }
+    #contact .details a:hover { color: var(--accent); text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="#" class="brand font-display">Azdin X</a>
+      <div class="links font-mono">
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="grid">
+      <div>
+        <p class="tag font-mono">— Full Stack Developer</p>
+        <h1 class="font-display">AZDIN<br>AITCHATTO</h1>
+        <p class="intro">Full-Stack Web Developer passionate about creating modern applications, front-end and back-end. I transform ideas into dynamic and secure websites using JavaScript.</p>
+        <div class="cta">
+          <a href="#contact" class="btn">Get in touch ↗</a>
+          <div class="social">
+            <a href="https://github.com/AzdinXX" aria-label="GitHub">GitHub</a>
+            <a href="https://www.linkedin.com/in/azdin-aitchatto-93400a354/" aria-label="LinkedIn">LinkedIn</a>
+            <a href="mailto:azdinaitchatto@gmail.com" aria-label="Email">Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="meta">
+        <h3 class="font-mono">Location</h3>
+        <p>Morocco</p>
+        <h3 class="font-mono">Status</h3>
+        <p class="status"><span class="dot"></span> Available for work</p>
+        <h3 class="font-mono">Expertise</h3>
+        <p>React, Node.js, Next.js</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="exp grid">
+      <div>
+        <span class="exp-tag font-mono">History.sys</span>
+        <h3 class="font-display">EXPERIENCE</h3>
+        <p class="muted">Tracing the professional circuitry and architectural milestones of my development career.</p>
+      </div>
+      <div>
+        <div class="exp-card">
+          <h4>Full-Stack Web Developer (JavaScript)</h4>
+          <p class="company">AZICODE62 School</p>
+          <span class="period">2024 - 2025</span>
+          <p>Completed intensive Full-Stack Web Developer training focused on JavaScript, React, Node.js and relational databases.</p>
+          <div class="tech">
+            <span>JavaScript</span><span>React</span><span>Node.js</span><span>MySQL</span><span>PhpMyAdmin</span>
+          </div>
+        </div>
+        <div class="exp-card">
+          <h4>Desktop Application Development</h4>
+          <p class="company">AZICODE62 School</p>
+          <span class="period">2025 - 2026</span>
+          <p>Junior Desktop Application Developer with experience in creating graphical user interfaces and desktop logic using Python (Tkinter) and Java (Swing).</p>
+          <div class="tech">
+            <span>Python</span><span>Tkinter</span><span>Java</span><span>Swing</span>
+          </div>
+        </div>
+        <div class="exp-card">
+          <h4>Web Development</h4>
+          <p class="company">Self Study</p>
+          <span class="period">2025 - 2026</span>
+          <p>Focused self-study in modern web development with hands-on project experience using Next.js and MongoDB, including full-stack application architecture, environment configuration, and real-world debugging.</p>
+          <div class="tech">
+            <span>Next.js</span><span>MongoDB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <span class="skills-tag font-mono">Arsenal.bin</span>
+    <h2 class="font-mono muted" style="font-size: 1.25rem; letter-spacing: 0.2em;">Technical Stack Architecture</h2>
+    <div class="skills-list" style="margin-top: 2rem;">
+      <div class="skill-item"><span class="num font-mono">01</span><span class="line"></span><h3>JavaScript (ES6+)</h3></div>
+      <div class="skill-item"><span class="num font-mono">02</span><span class="line"></span><h3>MongoDB</h3></div>
+      <div class="skill-item"><span class="num font-mono">03</span><span class="line"></span><h3>React</h3></div>
+      <div class="skill-item"><span class="num font-mono">04</span><span class="line"></span><h3>Next.js</h3></div>
+      <div class="skill-item"><span class="num font-mono">05</span><span class="line"></span><h3>Node.js</h3></div>
+      <div class="skill-item"><span class="num font-mono">06</span><span class="line"></span><h3>PhpMyAdmin</h3></div>
+      <div class="skill-item"><span class="num font-mono">07</span><span class="line"></span><h3>Java</h3></div>
+      <div class="skill-item"><span class="num font-mono">08</span><span class="line"></span><h3>Python</h3></div>
+      <div class="skill-item"><span class="num font-mono">09</span><span class="line"></span><h3>Tailwind CSS</h3></div>
+      <div class="skill-item"><span class="num font-mono">10</span><span class="line"></span><h3>Express</h3></div>
+      <div class="skill-item"><span class="num font-mono">11</span><span class="line"></span><h3>MySQL</h3></div>
+      <div class="skill-item"><span class="num font-mono">12</span><span class="line"></span><h3>GitHub</h3></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <span class="proj-tag font-mono">Selected.Works</span>
+    <h2 class="font-display" style="margin-bottom: 2rem;">Projects</h2>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <h3>Hotel France Azilal</h3>
+        <p class="cat">Web Application</p>
+        <div class="tags"><span>React</span><span>Node.js</span><span>MySQL</span><span>PhpMyAdmin</span></div>
+      </div>
+      <div class="proj-card">
+        <h3>HushBean</h3>
+        <p class="cat">Web Application</p>
+        <div class="tags"><span>React</span><span>Next.js</span><span>MongoDB</span></div>
+      </div>
+      <div class="proj-card">
+        <h3>AutoVortex</h3>
+        <p class="cat">Web Application</p>
+        <div class="tags"><span>React</span><span>Node.js</span><span>MySQL</span></div>
+      </div>
+      <div class="proj-card">
+        <h3>BulletinX</h3>
+        <p class="cat">SaaS Product</p>
+        <div class="tags"><span>JavaScript</span><span>Tailwind CSS</span><span>Bootstrap</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="font-mono">— Let's work together</h2>
+    <a href="mailto:azdinaitchatto@gmail.com" class="big-link font-display">
+      HAVE A PROJECT IN MIND?<br>
+      <span>LET'S TALK.</span>
+    </a>
+    <div class="details">
+      <div>
+        <h4 class="font-mono">Contact Details</h4>
+        <p>azdinaitchatto@gmail.com</p>
+        <p>+212 660 523 688</p>
+      </div>
+      <div>
+        <h4 class="font-mono">Socials</h4>
+        <p><a href="https://www.linkedin.com/in/azdin-aitchatto-93400a354/">LinkedIn</a></p>
+        <p><a href="https://github.com/AzdinXX">GitHub</a></p>
+        <p><a href="https://x.com/azdin_x">X</a></p>
+      </div>
+      <div>
+        <h4 class="font-mono">Availability</h4>
+        <p class="muted">Currently accepting new projects for Q4 2026.</p>
+      </div>
+    </div>
+  </section>
+</body>
 </html>
