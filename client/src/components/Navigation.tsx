@@ -7,10 +7,10 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { href: "#about", label: "About" },
-    { href: "#experience", label: "Experience" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
+    { href: "/about", label: "About" },
+    { href: "/experience", label: "Experience" },
+    { href: "/projects", label: "Projects" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -18,20 +18,25 @@ export default function Navigation() {
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/">
           <a className="text-2xl font-bold font-display tracking-tighter hover:text-accent transition-colors">
-            AZDIN.
+            Azdin X
           </a>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <a
+            <motion.a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium hover:text-accent transition-colors uppercase tracking-widest"
+              whileHover={{ y: -2 }}
+              whileTap={{ y: 0 }}
+              className="text-sm font-medium hover:text-accent transition-colors uppercase tracking-widest relative group"
             >
               {link.label}
-            </a>
+              <motion.span 
+                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"
+              />
+            </motion.a>
           ))}
         </div>
 

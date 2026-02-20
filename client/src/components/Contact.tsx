@@ -22,16 +22,16 @@ export default function Contact() {
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-border pt-12">
             <div>
               <h4 className="font-mono text-sm text-muted-foreground mb-4 uppercase">Contact Details</h4>
-              <p className="text-lg">hello@azdin.dev</p>
-              <p className="text-lg">+212 600 000 000</p>
+              <p className="text-lg">azdinaitchatto@gmail.com</p>
+              <p className="text-lg">+212 660 523 688</p>
             </div>
             
             <div>
               <h4 className="font-mono text-sm text-muted-foreground mb-4 uppercase">Socials</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-lg hover:text-accent hover:underline">LinkedIn</a></li>
-                <li><a href="#" className="text-lg hover:text-accent hover:underline">GitHub</a></li>
-                <li><a href="#" className="text-lg hover:text-accent hover:underline">Twitter</a></li>
+                <li><a href="https://www.linkedin.com/in/azdin-aitchatto-93400a354/" className="text-lg hover:text-accent hover:underline">LinkedIn</a></li>
+                <li><a href="https://github.com/AzdinXX" className="text-lg hover:text-accent hover:underline">GitHub</a></li>
+                <li><a href="https://x.com/azdin_x" className="text-lg hover:text-accent hover:underline">X</a></li>
               </ul>
             </div>
 
