@@ -25,64 +25,18 @@
       background: var(--bg);
       color: var(--fg);
       line-height: 1.6;
-      overflow-x: hidden;
     }
     .font-display { font-family: 'Syne', sans-serif; }
     .font-mono { font-family: 'Space Grotesk', monospace; }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    @keyframes rayH {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-    @keyframes rayV {
-      0% { top: -100%; }
-      100% { top: 100%; }
-    }
-    @keyframes circuitDraw {
-      0% { stroke-dashoffset: 1500; opacity: 0; }
-      20% { opacity: 0.5; }
-      80% { opacity: 0.5; }
-      100% { stroke-dashoffset: 0; opacity: 0; }
-    }
-    @keyframes glow {
-      0%, 100% { filter: drop-shadow(0 0 2px var(--accent)); opacity: 0.3; }
-      50% { filter: drop-shadow(0 0 8px var(--accent)); opacity: 0.6; }
-    }
-    .animate-in { opacity: 0; }
-    .animate-in.visible {
-      animation: fadeInUp 0.7s ease forwards;
-    }
-    .animate-in.visible-delay { animation-delay: 0.2s; }
-    .animate-in.visible-delay-2 { animation-delay: 0.4s; }
-    .animate-in.visible-delay-3 { animation-delay: 0.6s; }
 
     /* Navigation */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 50;
-      background: rgba(13,13,13,0.85);
+      background: rgba(13,13,13,0.8);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      transition: background 0.3s ease;
     }
     nav .container {
       max-width: 1200px;
@@ -93,7 +47,7 @@
       align-items: center;
       justify-content: space-between;
     }
-    nav a { color: var(--fg); text-decoration: none; transition: color 0.3s ease; }
+    nav a { color: var(--fg); text-decoration: none; }
     nav .brand { font-size: 1.5rem; font-weight: 700; }
     nav .brand:hover { color: var(--accent); }
     nav .links { display: flex; gap: 2rem; }
@@ -102,26 +56,14 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      position: relative;
-    }
-    nav .links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.3s ease;
     }
     nav .links a:hover { color: var(--accent); }
-    nav .links a:hover::after { width: 100%; }
     @media (max-width: 768px) {
       nav .links { display: none; }
     }
 
     /* Sections */
-    section { padding: 6rem 1.5rem; max-width: 1200px; margin: 0 auto; position: relative; }
+    section { padding: 6rem 1.5rem; max-width: 1200px; margin: 0 auto; }
     section h2 { font-size: 2rem; margin-bottom: 1rem; }
     .accent { color: var(--accent); }
     .muted { color: var(--muted); }
@@ -134,84 +76,11 @@
       justify-content: center;
       padding-top: 6rem;
       border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
     }
-    /* Grid rays */
-    .hero-rays {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.2;
-      overflow: hidden;
-    }
-    .hero-ray {
-      position: absolute;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      height: 1px;
-      width: 100%;
-      animation: rayH 6s linear infinite;
-    }
-    .hero-ray:nth-child(1) { top: 10%; animation-delay: 0s; animation-duration: 5s; }
-    .hero-ray:nth-child(2) { top: 25%; animation-delay: 1s; animation-duration: 7s; }
-    .hero-ray:nth-child(3) { top: 40%; animation-delay: 2s; animation-duration: 6s; }
-    .hero-ray:nth-child(4) { top: 55%; animation-delay: 0.5s; animation-duration: 8s; }
-    .hero-ray:nth-child(5) { top: 70%; animation-delay: 3s; animation-duration: 5.5s; }
-    .hero-ray:nth-child(6) { top: 85%; animation-delay: 1.5s; animation-duration: 7.5s; }
-    /* Circuit SVG */
-    .hero-circuit {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.15;
-    }
-    .hero-circuit path {
-      fill: none;
-      stroke: var(--accent);
-      stroke-width: 2px;
-      stroke-dasharray: 1500;
-      stroke-dashoffset: 1500;
-      animation: circuitDraw 12s ease-in-out infinite;
-    }
-    .hero-circuit path:nth-child(2) { animation-delay: 2s; }
-    .hero-circuit path:nth-child(3) { animation-delay: 4s; }
-    /* Grid background */
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
-    .hero .content { position: relative; z-index: 10; }
-    .hero .tag {
-      font-size: 1.25rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 0.6s ease 0.2s both;
-    }
-    .hero h1 {
-      font-size: clamp(3rem, 10vw, 8rem);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-      mix-blend-mode: difference;
-      text-shadow: 0 0 20px rgba(255,255,255,0.1);
-      animation: fadeInUp 0.8s ease 0.3s both;
-    }
-    .hero .intro {
-      font-size: 1.125rem;
-      color: var(--muted);
-      max-width: 36rem;
-      margin-bottom: 2rem;
-      animation: fadeIn 0.8s ease 0.5s both;
-    }
-    .hero .cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; animation: fadeIn 0.8s ease 0.6s both; }
+    .hero .tag { font-size: 1.25rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    .hero .intro { font-size: 1.125rem; color: var(--muted); max-width: 36rem; margin-bottom: 2rem; }
+    .hero .cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
     .hero .btn {
       display: inline-flex;
       align-items: center;
@@ -224,265 +93,81 @@
       text-decoration: none;
       border: none;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
     }
-    .hero .btn:hover { background: var(--accent); transform: translate(2px, 2px); }
+    .hero .btn:hover { background: var(--accent); }
     .hero .social { display: flex; gap: 1rem; }
     .hero .social a {
       padding: 0.75rem;
       border: 1px solid var(--border);
       color: var(--fg);
-      transition: border-color 0.3s ease, color 0.3s ease;
     }
     .hero .social a:hover { border-color: var(--accent); color: var(--accent); }
-    .hero .meta {
-      border-left: 1px solid var(--border);
-      padding-left: 2rem;
-      margin-top: 2rem;
-      position: relative;
-      animation: fadeIn 0.8s ease 0.7s both;
-    }
-    .hero .meta::before {
-      content: '';
-      position: absolute;
-      left: -1px;
-      top: 0;
-      width: 1px;
-      height: 33%;
-      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-      animation: rayV 3s linear infinite;
-      opacity: 0.5;
-    }
+    .hero .meta { border-left: 1px solid var(--border); padding-left: 2rem; margin-top: 2rem; }
     .hero .meta h3 { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; margin-bottom: 0.25rem; }
     .hero .meta p { font-size: 1.25rem; margin-bottom: 1rem; }
     .hero .status { display: flex; align-items: center; gap: 0.5rem; }
-    .hero .status .dot {
-      width: 12px;
-      height: 12px;
-      background: #22c55e;
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
+    .hero .status .dot { width: 12px; height: 12px; background: #22c55e; border-radius: 50%; }
     @media (min-width: 1024px) {
       .hero .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: end; }
     }
 
     /* Experience */
-    #experience {
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, transparent, rgba(255,215,0,0.02));
-    }
-    #experience::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
-    .exp-tag {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border: 1px solid rgba(255,215,0,0.3);
-      background: rgba(255,215,0,0.05);
-      color: var(--accent);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-    }
-    .exp { position: relative; z-index: 1; }
+    #experience { border-bottom: 1px solid var(--border); }
+    .exp-tag { display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
     .exp h3 { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; }
     .exp-card {
       padding: 2rem;
       background: rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.05);
       margin-bottom: 1.5rem;
-      position: relative;
-      transition: border-color 0.5s ease, box-shadow 0.5s ease;
     }
-    .exp-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 2rem;
-      width: 3px;
-      height: 3rem;
-      background: var(--accent);
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform 0.5s ease;
-    }
-    .exp-card:hover {
-      border-color: rgba(255,215,0,0.2);
-      box-shadow: 0 0 30px rgba(255,215,0,0.05);
-    }
-    .exp-card:hover::before { transform: scaleY(1); }
-    .exp-card:hover h4 { color: var(--accent); }
-    .exp-card h4 { font-size: 1.5rem; margin-bottom: 0.25rem; transition: color 0.3s ease; }
+    .exp-card:hover { border-color: rgba(255,215,0,0.2); }
+    .exp-card h4 { font-size: 1.5rem; margin-bottom: 0.25rem; }
     .exp-card .company { color: var(--accent); font-size: 1.125rem; margin-bottom: 0.5rem; }
     .exp-card .period { font-size: 0.875rem; color: var(--muted); background: rgba(255,255,255,0.05); padding: 0.25rem 1rem; display: inline-block; margin-bottom: 1rem; }
     .exp-card p { color: var(--muted); margin-bottom: 1rem; }
     .exp-card .tech { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .exp-card .tech span {
-      padding: 0.25rem 0.75rem;
-      font-size: 0.75rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      transition: border-color 0.3s ease, color 0.3s ease;
-    }
-    .exp-card:hover .tech span { border-color: rgba(255,215,0,0.3); color: var(--accent); }
+    .exp-card .tech span { padding: 0.25rem 0.75rem; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
     @media (min-width: 1024px) {
       .exp .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
     }
 
     /* Skills */
-    #skills {
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
-    #skills::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 50% 50%, rgba(255,215,0,0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
-    }
-    .skills-tag {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border: 1px solid rgba(255,215,0,0.3);
-      background: rgba(255,215,0,0.05);
-      color: var(--accent);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    #skills .skills-inner { position: relative; z-index: 1; }
+    #skills { border-bottom: 1px solid var(--border); }
+    .skills-tag { display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); color: var(--accent); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1rem; }
     .skills-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.5rem 0;
-      transition: transform 0.3s ease;
-    }
-    .skill-item:hover { transform: translateX(4px); }
-    .skill-item .num { font-size: 0.75rem; color: rgba(255,215,0,0.5); transition: color 0.3s ease; }
-    .skill-item .line {
-      width: 2rem;
-      height: 1px;
-      background: rgba(255,255,255,0.1);
-      transition: width 0.3s ease, background 0.3s ease;
-    }
-    .skill-item:hover .line { width: 3rem; background: rgba(255,215,0,0.5); }
-    .skill-item h3 { font-size: 1.5rem; font-weight: 700; transition: color 0.3s ease; }
+    .skill-item { display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0; }
+    .skill-item .num { font-size: 0.75rem; color: rgba(255,215,0,0.5); }
+    .skill-item .line { width: 2rem; height: 1px; background: rgba(255,255,255,0.1); }
+    .skill-item h3 { font-size: 1.5rem; font-weight: 700; }
     .skill-item:hover .num, .skill-item:hover h3 { color: var(--accent); }
 
     /* Projects */
-    #projects {
-      border-bottom: 1px solid var(--border);
-      background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.5) 100%);
-    }
-    .proj-tag {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border: 1px solid rgba(255,215,0,0.3);
-      background: rgba(255,215,0,0.05);
-      color: var(--accent);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
+    #projects { border-bottom: 1px solid var(--border); }
+    .proj-tag { display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); color: var(--accent); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1rem; }
     .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
     .proj-card {
       border: 1px solid var(--border);
       background: var(--bg);
       padding: 1.5rem;
-      position: relative;
-      transition: border-color 0.5s ease;
     }
-    .proj-card::before,
-    .proj-card::after {
-      content: '';
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-color: rgba(255,215,0,0.4);
-      border-style: solid;
-      border-width: 0;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .proj-card::before {
-      top: 0;
-      left: 0;
-      border-top-width: 1px;
-      border-left-width: 1px;
-    }
-    .proj-card::after {
-      bottom: 0;
-      right: 0;
-      border-bottom-width: 1px;
-      border-right-width: 1px;
-    }
-    .proj-card:hover {
-      border-color: rgba(255,215,0,0.4);
-    }
-    .proj-card:hover::before,
-    .proj-card:hover::after { opacity: 1; }
-    .proj-card:hover h3 { color: var(--accent); }
-    .proj-card h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-    }
+    .proj-card:hover { border-color: rgba(255,215,0,0.4); }
+    .proj-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
     .proj-card .cat { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; }
     .proj-card .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-    .proj-card .tags span {
-      font-size: 0.625rem;
-      padding: 0.25rem 0.5rem;
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
+    .proj-card .tags span { font-size: 0.625rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border); color: var(--muted); }
 
     /* Contact */
     #contact { padding: 6rem 1.5rem; }
     #contact h2 { font-size: 1.25rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 2rem; }
-    #contact .big-link {
-      display: block;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 800;
-      color: var(--fg);
-      text-decoration: none;
-      line-height: 1.1;
-      transition: color 0.3s ease;
-    }
+    #contact .big-link { display: block; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; color: var(--fg); text-decoration: none; line-height: 1.1; }
     #contact .big-link:hover { color: var(--muted); }
-    #contact .big-link span { color: var(--accent); transition: opacity 0.3s ease; }
+    #contact .big-link span { color: var(--accent); }
     #contact .big-link:hover span { opacity: 0.9; }
-    #contact .details {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 3rem;
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--border);
-    }
+    #contact .details { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
     #contact .details h4 { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; }
-    #contact .details a { color: var(--fg); text-decoration: none; transition: color 0.3s ease; }
+    #contact .details a { color: var(--fg); text-decoration: none; }
     #contact .details a:hover { color: var(--accent); text-decoration: underline; }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--muted); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--fg); }
   </style>
 </head>
 <body>
@@ -499,21 +184,7 @@
   </nav>
 
   <section class="hero">
-    <div class="hero-rays">
-      <div class="hero-ray"></div>
-      <div class="hero-ray"></div>
-      <div class="hero-ray"></div>
-      <div class="hero-ray"></div>
-      <div class="hero-ray"></div>
-      <div class="hero-ray"></div>
-    </div>
-    <svg class="hero-circuit" viewBox="0 0 1200 800" preserveAspectRatio="none">
-      <path d="M 100,-100 L 100,200 L 300,400 L 800,400 L 800,900"/>
-      <path d="M -100,500 L 200,500 L 400,700 L 400,1000"/>
-      <path d="M 1200,0 L 800,500 L 200,900"/>
-    </svg>
-    <div class="hero-grid"></div>
-    <div class="content grid">
+    <div class="grid">
       <div>
         <p class="tag font-mono">— Full Stack Developer</p>
         <h1 class="font-display">AZDIN<br>AITCHATTO</h1>
@@ -540,13 +211,12 @@
 
   <section id="experience">
     <div class="exp grid">
-      <div class="animate-in">
       <div>
         <span class="exp-tag font-mono">History.sys</span>
         <h3 class="font-display">EXPERIENCE</h3>
         <p class="muted">Tracing the professional circuitry and architectural milestones of my development career.</p>
       </div>
-      <div class="animate-in visible-delay">
+      <div>
         <div class="exp-card">
           <h4>Full-Stack Web Developer (JavaScript)</h4>
           <p class="company">AZICODE62 School</p>
@@ -579,7 +249,6 @@
   </section>
 
   <section id="skills">
-    <div class="skills-inner animate-in">
     <span class="skills-tag font-mono">Arsenal.bin</span>
     <h2 class="font-mono muted" style="font-size: 1.25rem; letter-spacing: 0.2em;">Technical Stack Architecture</h2>
     <div class="skills-list" style="margin-top: 2rem;">
@@ -596,11 +265,9 @@
       <div class="skill-item"><span class="num font-mono">11</span><span class="line"></span><h3>MySQL</h3></div>
       <div class="skill-item"><span class="num font-mono">12</span><span class="line"></span><h3>GitHub</h3></div>
     </div>
-    </div>
   </section>
 
   <section id="projects">
-    <div class="animate-in">
     <span class="proj-tag font-mono">Selected.Works</span>
     <h2 class="font-display" style="margin-bottom: 2rem;">Projects</h2>
     <div class="proj-grid">
@@ -625,11 +292,9 @@
         <div class="tags"><span>JavaScript</span><span>Tailwind CSS</span><span>Bootstrap</span></div>
       </div>
     </div>
-    </div>
   </section>
 
   <section id="contact">
-    <div class="animate-in">
     <h2 class="font-mono">— Let's work together</h2>
     <a href="mailto:azdinaitchatto@gmail.com" class="big-link font-display">
       HAVE A PROJECT IN MIND?<br>
@@ -652,18 +317,6 @@
         <p class="muted">Currently accepting new projects for Q4 2026.</p>
       </div>
     </div>
-    </div>
   </section>
-
-  <script>
-    document.querySelectorAll('.animate-in').forEach(el => {
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) e.target.classList.add('visible');
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-      obs.observe(el);
-    });
-  </script>
 </body>
 </html>
