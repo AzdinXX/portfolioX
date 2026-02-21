@@ -1,10 +1,9 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
-import CircuitBoard from "@/components/CircuitBoard";
-import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
@@ -13,7 +12,6 @@ export default function Home() {
       <main>
         <Hero />
         <Experience />
-        <CircuitBoard />
         <Skills />
         <Projects />
         <Contact />
